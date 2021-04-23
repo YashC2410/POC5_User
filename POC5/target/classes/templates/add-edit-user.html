@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <style th:inline="text">
+    body{
+           background: url(/images/ub.png) no-repeat center center fixed;
+           opacity: 0.85;
+    }
+</style>
+</head>
+
+<body >
+    <div class="container my-5" style="width: 750px;">
+        <h2 style="color: white;background-color:#E27C59;padding: 5px;text-align: center;margin-left: 0px;width: 720px;"> ADD-EDIT USER</h2>
+        <div class="card">
+            <div class="card-body" style="background-color:#FDDA66;">
+                <div class="col-md-10" style="margin-left: 30px; display: inline-block;">
+                    <form action="#" th:action="@{/createUser}" th:object="${user}" method="post">
+                        
+                        <img th:src="@{/images/add.png}" style="margin-left: 160px;" width="280" height="250"/>                       
+       
+                        <div class="form-group row">
+                            <div class="form-group col-md-8">
+                                <label for="name" class="col-form-label" style="font-size:22px;color:#FF5729"><img th:src="@{/images/fname.png}" width="60" height="60"/><b>First Name</b></label> 
+                                <input type="text" th:field="*{fname}" class="form-control" 
+                                            id="firstName" placeholder="Enter Your First Name" style="width: 550px;"/>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="name" class="col-form-label" style="font-size:22px;color:#FF5729"><img th:src="@{/images/lname.png}" width="60" height="60"/><b>Last Name</b></label> 
+                                <input type="text" th:field="*{lname}" class="form-control" 
+                                            id="lastName" placeholder="Enter Your Last Name" style="width: 550px;"/>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="email" class="col-form-label" style="font-size:22px;color:#FF5729"><img th:src="@{/images/email.png}" width="60" height="60"/><b>Email</b></label> 
+                                <input type="text" th:field="*{email}" class="form-control" 
+                                            id="email" placeholder="Enter Your Email Id" style="width: 550px;"/>
+                            </div>
+                              <div class="form-group col-md-8">
+                                <label for="email" class="col-form-label" style="font-size:22px;color:#FF5729"><img th:src="@{/images/cn.png}" width="60" height="60"/><b>Contact</b></label> 
+                                <input type="text" th:field="*{contact}" class="form-control" 
+                                            id="email" placeholder="Enter Your Contact Detail" style="width: 550px;"/>
+                            </div>
+                              <div class="form-group col-md-8">
+                                <label for="email" class="col-form-label" style="font-size:22px;color:#FF5729"><img th:src="@{/images/city.png}" width="60" height="60"/><b>City</b></label> 
+                                <input type="text" th:field="*{city}" class="form-control" 
+                                            id="email" placeholder="Enter Your City" style="width: 550px;"/>
+                            </div>
+                              <div class="form-group col-md-8">
+                                <label for="email" class="col-form-label" style="font-size:22px;color:#FF5729"><img th:src="@{/images/country.png}" width="60" height="60"/><b>Country</b></label>
+                                <input type="text" th:field="*{country}" class="form-control" 
+                                            id="email" placeholder="Enter Your Country" style="width: 550px;"/>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-success" value=" Submit " style="margin-left: 140px;font-size: 21px;width: 300px;padding: 10px;">
+                            </div>
+
+                            <input type="hidden" id="id" th:field="*{id}">
+    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer style="color:white;background-color:black;padding: 15px;font-size: medium;text-align: center;"><b>Copyright @Java-Web Departmenet 2021</b></footer>
+</body>
+
+</html>

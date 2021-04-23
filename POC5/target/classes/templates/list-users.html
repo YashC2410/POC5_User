@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>All Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body th:style="'background: url(/images/list.png) no-repeat center center fixed;'">
+    <div class="container my-2" >
+        <h2  style="color: white;background-color:#EFC02E;padding: 5px;text-align: center;margin-left: 0px;width: 1100px;">USER DETAILS</h2>
+    <div class="card">
+        <img th:src="@{/images/us1.png}" width="1100" height="400"/>
+    <div class="card-body">
+        <div th:switch="${listUsers}" class="container my-5">
+            <p class="my-5">
+            <img th:src="@{/images/au.png}" width="80" height="70"/>&nbsp;&nbsp;
+                <a href="/edit" class="btn btn-primary">
+                <i class="fas fa-user-plus ml-2"> Add User </i></a>
+            </p>
+            <div class="col-md-10">
+                <h2 th:case="null">No record found !!</h2>
+                <div th:case="*">
+                    <table class="table table-striped table-responsive-md" border="1">
+                        <thead>
+                            <tr>
+                                <th style="background-color:#8FF22D;color:white">First Name</th>
+                                <th style="background-color:#8FF22D;color:white">Last Name</th>
+                                <th style="background-color:#8FF22D;color:white">Email</th>
+                                <th style="background-color:#8FF22D;color:white">Contact</th>
+                                <th style="background-color:#8FF22D;color:white">City</th>
+                                <th style="background-color:#8FF22D;color:white">Country</th>
+                                <th style="background-color:#8FF22D;color:white">Edit</th>
+                                <th style="background-color:#8FF22D;color:white">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="user : ${listUsers}">
+                                <td th:text="${user.fname}"></td>
+                                <td th:text="${user.lname}"></td>
+                                <td th:text="${user.email}"></td>
+                                 <td th:text="${user.contact}"></td>
+                                <td th:text="${user.city}"></td>
+                                 <td th:text="${user.Country}"></td>
+                                <td>
+                                    <a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-primary">
+                                        <i class='far fa-edit' style='font-size:36px'></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger">
+                                       <i class="fas fa-user-times ml-2" style="font-size:36px"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+<div th:if = "${totalPages > 1}" style="background-color:black;color:white;padding:8px">
+			<div class = "row col-sm-10">
+				<div class = "col-sm-2">
+				<img th:src="@{/images/tp.jpg}" width="60" height="40"/><br/>
+					<b>Total Data: [[${totalItems}]]</b>
+				</div>
+				<div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a style="text-decoration: none;" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}"><b>[[${i}]]</b></span>  &nbsp; &nbsp;
+					</span>
+				</div>
+				<div class = "col-sm-1">
+				<img th:src="@{/images/p.png}" width="60" height="40"/>
+					<a style="text-decoration: none;" th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+                    <span th:unless="${currentPage > 1}"><b>Previous</b></span>
+				</div>
+				<div class = "col-sm-1">
+				<img th:src="@{/images/ne.png}" width="60" height="40"/>
+					<a style="text-decoration: none;" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}"><b>Next</b></span>
+				</div>
+				
+				 <div class="col-sm-1">
+				 <img th:src="@{/images/l.png}" width="60" height="40"/>
+    				<a style="text-decoration: none;" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}"><b>Last</b></span>
+   				 </div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
